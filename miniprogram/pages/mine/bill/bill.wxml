@@ -1,0 +1,11 @@
+<!--pages/mine/bill/bill.wxml-->
+<view wx:for="{{list}}" wx:for-index="idx" wx:for-item="itemName" wx:key="{{itemName._id}}" id="list">
+  <view class='list-item'>
+    <image class='img-pay' src='../imgs/checklist.png'/>
+    <text class='title'>{{itemName.studyhallreserve_studyhallname}}</text>
+    <view class='left'>
+    <view class='pay'>-{{itemName.studyhallreserve_price}}元</view>
+    <view class='time'>{{itemName.studyhallreserve_begintime}}</view>
+    </view>
+  </view>
+</view>

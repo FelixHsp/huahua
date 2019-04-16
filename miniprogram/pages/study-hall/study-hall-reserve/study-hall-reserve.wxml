@@ -1,0 +1,41 @@
+<view id='image-wrapper'>
+  <image class='img' src='../../../images/huahua.png'></image>
+  <view class='name'>mine自习室</view>
+  <view class='add'>哈尔滨市香坊区木材街59号</view>
+</view>
+<!-- 房屋名字，选择时间 价格 联系人姓名 联系人电话 -->
+<view id='content-wrapper'>
+  <view>
+    <view class='room-name'>自习室编号</view>
+    <view class='room-name-value'>自习室{{idx}}</view>
+  </view>
+  <view>
+    <view class='room-time'>
+      <picker bindchange='bindtime' value='{{timeindex}}' range='{{timearray}}'>
+      选择预定时间
+      <view class='room-time-value'>{{timearray[timeindex]}}</view>
+      </picker>
+    </view>
+  </view>
+  <view>
+    <view class='room-price'>所需费用</view>
+    <view class='room-price-value'>{{book.room_price_yuan}}</view>
+  </view>
+  <view>
+    <view class='user-name'>预定人姓名</view>
+    <input class='user-name-value' bindinput='username'></input>
+  </view>
+  <view>
+    <view class='user-call'>预定人联系方式</view>
+    <input class='user-call-value' bindinput='usercall'></input>
+  </view>
+</view>
+<view id='tips-wrapper'>
+  <view>注意事项</view>
+  <view>1.点击确定预定后，会从您账户余额中扣除相应费用，请确保当前账户余额足够。如需充值请联系管理人员或到店面进行充值。</view>
+  <view>2.确定后将立即扣除费用，如提前离开将不予退还。</view>
+  <view>3.每次最多预定三个小时。</view>
+</view>
+<view id='sub'>
+  <button type='default' bindtap='submit'>点击确定</button>
+</view>

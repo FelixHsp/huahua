@@ -1,0 +1,25 @@
+<!--pages/mine/wallet/wallet.wxml-->
+<view class='top-bar'>
+  <view class='wraper'>
+    <view class='record'>
+      <image src='../imgs/jifen.png'></image>
+      <view>积分:{{record}}</view>
+    </view>
+    <view class='bill'>
+      <image src='../imgs/pay.png'></image>
+      <view>余额:{{bill}}元</view>
+    </view>
+  </view>
+</view>
+<view id='wrapper'>
+  <view wx:for="{{list}}" wx:for-index="idx" wx:for-item="itemName" wx:key="{{itemName._id}}" id="list">
+  <view class='list-item'>
+    <image src='{{itemName.flower_img}}'></image>
+    <text class='time'>{{itemName.flower_begin}}</text>
+    <text class='study'>学习时间{{itemName.flower_time}}分钟</text>
+    <text class='price'>+{{itemName.flower_prcie}}分</text>
+    <!-- <text class='jifen'>{{itemName.flower_prcie}}</text> -->
+  </view>
+</view>
+</view>
+<!-- <button>sss</button> -->

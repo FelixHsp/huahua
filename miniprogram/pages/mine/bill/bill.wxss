@@ -1,0 +1,46 @@
+/* pages/mine/bill/bill.wxss */
+page{
+  background: #eee;
+}
+#list{
+  width: 95%;
+  margin: 0 auto;
+  background: white;
+  border-radius: 10px;
+}
+#list .list-item{
+  margin: 0 auto;
+  width: 90%;
+  height: 80px;
+  margin-top: 5px;
+  /* border-top: 1px solid #ccc; */
+  position: relative;
+  font-size: 14px;
+}
+#list .list-item .time{
+  color: #999;
+  font-size: 12px;
+  margin-top: 5px;
+  /* position: absolute */
+}
+#list .list-item .img-pay{
+  width: 40px;
+  height: 40px;
+  /* background-color: #99CC99; */
+  margin-top: 20px;
+  position: absolute;
+  top:50%;
+  margin-top:-20px;
+}
+#list .list-item .title{
+  position: absolute;
+  top:50%;
+  left: 80px;
+  transform: translateY(-50%);
+}
+#list .list-item .left{
+  position: absolute;
+  right:0;
+  top:50%;
+  transform: translateY(-50%);
+}

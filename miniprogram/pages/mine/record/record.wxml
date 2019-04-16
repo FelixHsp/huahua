@@ -1,0 +1,32 @@
+<view class='topTabSwiper'>
+    <view class='tab  {{currentData == 0 ? "tabBorer" : ""}}'  data-current = "0" bindtap='checkCurrent'>正在使用</view>
+    <view class='tab  {{currentData == 1 ? "tabBorer" : ""}}'  data-current = "1" bindtap='checkCurrent'>历史纪录</view>
+</view>
+<swiper current="{{currentData}}" class='swiper' style="height:{{scrollHeight}}px" duration="300" bindchange="bindchange">
+<!-- 当前正在使用的自习室列表 -->
+  <swiper-item><view class='swiper_con'>
+    <view wx:for="{{list}}" wx:for-index="idx" wx:for-item="itemName" wx:key="{{itemName._id}}" id="list">
+      <view class='list-item'>
+        <text class='title'>{{itemName.studyhallreserve_studyhallname}}</text>
+        <view class='timer'>
+        <view class='cost'>使用人:{{itemName.studyhallreserve_username}}</view>
+          <view class='cost'>结束时间:{{itemName.studyhallreserve_relationtime}}</view> 
+          <!-- <view class='time'>开始时间:{{itemName.studyhallreserve_begintime}}</view> -->
+        </view>
+      </view>
+    </view>
+  </view></swiper-item>
+  <!-- 历史记录 -->
+  <swiper-item><view class='swiper_con'>
+    <view wx:for="{{list2}}" wx:for-index="idx" wx:for-item="itemName"  wx:key="{{itemName._id}}" id="list">
+      <view class='list-item'>
+        <text class='title'>{{itemName.studyhallreserve_studyhallname}}</text>
+        <view class='timer'>
+        <view class='cost'>使用人:{{itemName.studyhallreserve_username}}</view>
+          <view class='cost'>学习时长:{{itemName.studyhallreserve_hour}}小时</view> 
+          <view class='time'>开始时间:{{itemName.studyhallreserve_begintime}}</view>
+        </view>
+      </view>
+    </view>
+  </view></swiper-item>
+</swiper>

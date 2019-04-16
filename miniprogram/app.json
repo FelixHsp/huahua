@@ -1,0 +1,56 @@
+{
+  "pages": [
+    "pages/study-hall/study-hall",
+    "pages/flower/flower",
+    "pages/mine/bill/bill",
+    "pages/mine/record/record",
+    "pages/tips/two/two",
+    "pages/mine/wallet/wallet",
+    "pages/tips/one/one",
+    "pages/tips/tips",
+    "pages/mine/mine",
+    "pages/index/index",
+    "pages/userConsole/userConsole",
+    "pages/study-hall/study-hall-reserve/study-hall-reserve",
+    "pages/study-hall/study-hall-detail/study-hall-detail",
+    "pages/mine/about/about"
+  ],
+  "window": {
+    "backgroundColor": "#FFFFFF",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#99CC99",
+    "navigationBarTitleText": "花由习生",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#99CC99",
+    "selectedColor": "#669933",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/study-hall/study-hall",
+        "text": "mine自习室",
+        "iconPath": "images/icon_zixishi0.png",
+        "selectedIconPath": "images/icon_zixishi.png"
+      },
+      {
+        "pagePath": "pages/flower/flower",
+        "text": "专注学习",
+        "iconPath": "images/hua0.png",
+        "selectedIconPath": "images/hua.png"
+      },
+      {
+        "pagePath": "pages/tips/tips",
+        "text": "计划制定",
+        "iconPath": "images/tips0.png",
+        "selectedIconPath": "images/tips.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "images/self0.png",
+        "selectedIconPath": "images/self.png"
+      }
+    ]
+  }
+}

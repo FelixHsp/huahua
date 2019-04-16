@@ -1,0 +1,52 @@
+<!-- 自习室背景 -->
+<view id="background">
+  <image src='../../images/flower-hua.png'></image>
+  <image src='../../images/flower-hua2.png'></image>
+  <image src='../../images/flower-hua3.png'></image>
+  <image src='../../images/flower-hua4.png'></image>
+  <image src='../../images/feiji_1.png'></image>
+  <image src='../../images/feiji.png'></image>
+  <view id='date'>
+    <!-- <view>{{weather.city}}</view>
+    <view class='year'>{{nowYear}}</view>
+    <view class='mou'>{{nowMou}}</view>
+    <view class='day'>{{nowDay}}</view>
+    <view class='md'>/</view> -->
+  </view>
+  <view id='weather'>
+    <view>{{weather.city}}</view>
+    <view>{{weather.date}}</view>
+    <view>{{weather.tem2}}{{weather.tem1}}</view>
+  </view>
+  <view id='content'>
+    <view>书山有路勤为径</view>
+    <view>学海无涯苦作舟</view>
+  </view>
+</view>
+<!-- 自习室背景 -->
+
+<!-- 自习室种类展示 -->
+<view id='room-type'>
+  <view class='text'>点击下方小房子预定自习室</view>
+  <view class='type'>
+    <image src='../../images/one-select.png'></image>
+    <image src='../../images/two-select.png'></image>
+    <view class='one'>单人自习室</view>
+    <view class='two'>双人自习室</view>
+  </view>
+</view>
+<!-- 自习室种类展示 -->
+
+<!-- 自习室 -->
+<view id='room'>
+  <image src='../../images/one-select.png' bindtap='click1'></image>
+  <image src='../../images/one-select.png' bindtap='click2'></image>
+  <image src='../../images/one-select.png' bindtap='click3'></image>
+  <image src='../../images/one-select.png' bindtap='click4'></image>
+  <image src='../../images/one-select.png' bindtap='click5'></image>
+  <image src='../../images/one-select.png' bindtap='click6'></image>
+  <image src='../../images/two-select.png' bindtap='click7'></image>
+  <image src='../../images/two-select.png' bindtap='click8'></image>
+  <image src='../../images/two-select.png' bindtap='click9'></image>
+</view>
+<!-- 自习室 -->

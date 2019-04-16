@@ -1,0 +1,33 @@
+<!--pages/mine/mine.wxml-->
+<view>
+  <view class='top-img'>
+    <view class='top-content'>
+      <view class='user-avatar'>
+        <open-data type="userAvatarUrl" class="top-img"></open-data>
+      </view>
+      <view class='user-name'>
+        <open-data type="userNickName" class="top-user"></open-data>
+      </view>
+    </view>
+  </view>
+  <view class='list'>
+    <view class='pay' bindtap='moveBill'>
+    <image src='imgs/test.png' class='img-bill'></image>
+    账单管理
+    </view>
+    <view class='record' bindtap='moveRecord'>
+    <image src='imgs/notebook.png' class='img-record'></image>
+    自习室记录
+    </view>
+    <view class='wallet' bindtap='moveWallet'>
+    <image src='imgs/wallet.png'
+    class='img-wallet'></image>
+    我的钱包
+    </view>
+    <view class='about'>
+    <image src='imgs/load.png'
+    class='img-about'></image>
+    <button class='button' open-type="feedback">意见反馈</button>
+    </view>
+  </view>
+</view>

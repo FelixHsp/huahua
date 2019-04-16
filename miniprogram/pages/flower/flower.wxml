@@ -1,0 +1,43 @@
+<!--pages/flower/flower.wxml-->
+<view id='father'>
+  <view id='main' wx:if="{{isShow}}">
+    <!-- <view id='headWord'>
+      <text class='word' wx:if='{{!isFloShow}}'>开始养花吧</text>
+      <text class='word' wx:if='{{isFloShow}}'>专注学习吧</text>
+    </view> -->
+
+    <image class='flowers' src='https://6c65-learninglife-c8aa8e-1258848626.tcb.qcloud.la/flowers/0.png?sign=70012613ac5649d384038aa9696823f8&t=1555302385' wx:if='{{!isFloShow}}'></image>
+    <image class='flowers2' src='{{picture}}' wx:if='{{isFloShow}}'></image>
+    <view id='time'>
+      <slider wx:if='{{!isFloShow}}' min='1' max="120" step="1" value='45' block-size='10' block-color='#99cc99' backgroundColor='#fff' activeColor='#99cc99' bindchanging='bindValue' disabled='{{isAbled}}' />
+      <text class='shengyushijian' wx:if='{{isFloShow}}'>剩余时间</text>
+      <text id='showTime'>{{min}}:{{sec}}</text>
+      <view>
+        <button wx:if="{{isBtnShow}}" bindtap='ok'>开始</button>
+        <button wx:if="{{!isBtnShow}}" bindtap='giveUp'>放弃</button>
+      </view>
+      <view wx:if='{{!isFloShow}}' id='content1'>
+        <text>使用方法:</text>
+        <text>1.点击开始后可以选择一个你喜欢的样式,确定后花将开始成长。过程中若手机离开该画面，花自动凋谢。</text>
+        <text>2.选择养花时长，若成功养成将得到相对应积分奖励，积分可以换取余额。（余额仅可用来使用自习室））</text>
+        <text>3.积分规则:大于15分钟小于等于30分钟可得10积分，大于30分钟小于等于60分钟可得25积分,大于60分钟小于等于120分钟可得55积分，等于120分钟可得120积分。</text>
+      </view>
+      <view class='kong'></view>
+    </view>
+  </view>
+
+  <view id='mask' wx:if="{{!isShow}}">
+    <view id='content'>
+      <!-- <text>选择你想养的花</text> -->
+      <view id='img'>
+        <image data-num="1" class="{{_num==1?'chose':''}}" bindtap='click1' src='https://6c65-learninglife-c8aa8e-1258848626.tcb.qcloud.la/flowers/1.png?sign=d2bbfa574e2b912c16ab6e1db5840b84&t=1555302606'></image>
+        <image data-num="2" class="{{_num==2?'chose':''}}" bindtap='click2' src='https://6c65-learninglife-c8aa8e-1258848626.tcb.qcloud.la/flowers/2.png?sign=a15fd79a2538762dfbd9372d98c8c960&t=1555302683'></image>
+        <image data-num="3" class="{{_num==3?'chose':''}}" bindtap='click3' src='https://6c65-learninglife-c8aa8e-1258848626.tcb.qcloud.la/flowers/3.png?sign=1daae1dd2bba22e26698edd09b8b8502&t=1555302696'></image>
+        <image data-num="4" class="{{_num==4?'chose':''}}" bindtap='click4' src='https://6c65-learninglife-c8aa8e-1258848626.tcb.qcloud.la/flowers/4.png?sign=b7f9f3db0787a5d9e32f88f125bb5651&t=1555302716'></image>
+        <image data-num="5" class="{{_num==5?'chose':''}}" bindtap='click5' src='https://6c65-learninglife-c8aa8e-1258848626.tcb.qcloud.la/flowers/5.png?sign=1c6f7e44745a4df05b307eef0980fc81&t=1555302730'></image>
+        <image data-num="6" class="{{_num==6?'chose':''}}" bindtap='click6' src='https://6c65-learninglife-c8aa8e-1258848626.tcb.qcloud.la/flowers/6.png?sign=20bd2ca9ce8307375249dda952187dca&t=1555302743'></image>
+      </view>
+      <button bindtap='start'>确定</button>
+    </view>
+  </view>
+</view>

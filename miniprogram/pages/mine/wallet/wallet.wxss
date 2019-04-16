@@ -1,0 +1,113 @@
+/* pages/mine/wallet/wallet.wxss */
+page{
+  /* background-color: #eee; */
+}
+.top-bar{
+  position: absolute;
+  top:0;
+  left: 0;
+  right: 0;
+  width: 95%;
+  margin: 5% auto;
+  border-radius: 10px;
+  height: 20%;
+  background-color:#99CC99;
+}
+.top-bar .wraper{
+  position: absolute;
+  top:40%;
+  left:50%;
+  width: 100%;
+  height: 20%;
+  /* background: red; */
+  /* line-height: 20%; */
+  transform: translate(-50%,-50%);
+}
+.top-bar .last{
+  margin-left: 10px;
+}
+.top-bar .record{
+  font-size: 12px;
+  position: absolute;
+  left: 20%;
+}
+.top-bar .record image{
+  width: 40px;
+  height: 40px;
+}
+.top-bar .bill{
+  /* margin-left: 10px; */
+  position: absolute;
+  font-size: 12px;
+  left: 70%;
+}
+.top-bar .bill image{
+  /* margin-left: 10px; */
+  /* font-size: 12px; */
+  width: 40px;
+  height: 40px;
+}
+.change{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  height: 50px;
+  line-height: 50px;
+  background-color: #99CC99;
+}
+#list{
+  width: 95%;
+  margin: 0 auto;
+  background: #eee;
+  border-radius: 10px;
+}
+#list .list-item{
+  margin: 0 auto;
+  width: 90%;
+  height: 80px;
+  margin-top: 10px;
+  /* border-top: 1px solid #ccc; */
+  position: relative;
+  font-size: 14px;
+}
+#list image{
+  width: 30px;
+  height: 80px;
+  position: relative;
+  left: 10px;
+}
+#list .time{
+  /* display: block; */
+  font-size: 12px;
+  position: absolute;
+  left: 50%;
+  font-weight: lighter;
+  transform: translate(-50%,-50%);
+  top: 20px;
+}
+#list .price{
+  /* display: block; */
+  font-size: 18px;
+  position: absolute;
+  left: 85%;
+  top: 50%;
+  font-weight: lighter;
+  transform: translate(0,-50%);
+  /* top: 10px; */
+}
+#list .study{
+  /* display: block; */
+  font-size: 14px;
+  position: absolute;
+  left: 50%;
+  top: 70%;
+  font-weight: lighter;
+  transform: translate(-50%,-50%);
+  /* top: 10px; */
+}
+#wrapper{
+  position: relative;
+  top: 180px;
+}

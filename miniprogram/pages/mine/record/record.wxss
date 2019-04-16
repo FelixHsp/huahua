@@ -1,0 +1,78 @@
+page{
+  background: #eee;
+  /* height: 1000px; */
+}
+.tab {
+  float: left;
+  width: 50%;
+  text-align: center;
+  padding: 10rpx 0;
+  height: 20px;
+  font-size: 14px;
+  line-height: 20px;
+}
+ 
+.topTabSwiper {
+  border: 1px solid #99CC99;
+  /* border-bottom: 1px solid #99CC99; */
+  background: white;
+  color: #99CC99;
+  zoom: 1;
+  width: 50%;
+  margin: 10px auto;
+  border-radius: 5px;
+}
+ 
+.topTabSwiper:after {
+  content: "";
+  clear: both;
+  display: block;
+}
+ 
+.tabBorer {
+  /* border-bottom: 1px solid white; */
+  background: #99CC99;
+  color: white;
+}
+ 
+.swiper {
+  width: 100%;
+}
+ 
+.swiper_con {
+  text-align: center;
+  width: 100%;
+
+  /* height: 1000px; */
+  /* padding: 80rpx 0; */
+}
+#list{
+  width: 95%;
+  background-color:white;
+  margin: 0 auto;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: lighter;
+}
+#list .list-item{
+  margin: 0 auto;
+  width: 90%;
+  height: 80px;
+  /* border-bottom: 1px solid #ccc; */
+  margin-top: 10px;
+  position: relative;
+  background-color:rgba(99,CC,99, 0.6);
+}
+#list .list-item .title{
+  position: absolute;
+  top:50%;
+  left: 20px;
+  transform: translateY(-50%);
+}
+#list .list-item .timer{
+  position: absolute;
+  top:50%;
+  right:20px;
+  font-size: 10px;
+  transform: translateY(-50%);
+}
