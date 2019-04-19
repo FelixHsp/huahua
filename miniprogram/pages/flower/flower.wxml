@@ -1,11 +1,6 @@
 <!--pages/flower/flower.wxml-->
 <view id='father'>
   <view id='main' wx:if="{{isShow}}">
-    <!-- <view id='headWord'>
-      <text class='word' wx:if='{{!isFloShow}}'>开始养花吧</text>
-      <text class='word' wx:if='{{isFloShow}}'>专注学习吧</text>
-    </view> -->
-
     <image class='flowers' src='https://6c65-learninglife-c8aa8e-1258848626.tcb.qcloud.la/flowers/0.png?sign=70012613ac5649d384038aa9696823f8&t=1555302385' wx:if='{{!isFloShow}}'></image>
     <image class='flowers2' src='{{picture}}' wx:if='{{isFloShow}}'></image>
     <view id='time'>

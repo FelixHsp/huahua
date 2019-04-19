@@ -1,16 +1,13 @@
 <!--pages/tips/tips.wxml-->
 <view class='tips'>
-
-<!-- 学习计划 -->
-<view id='section-one' bindtap='goToTipOne'>
-<image class='tip-one' src="../../images/tip-one.png" mode="widthFix"></image>
-<text class="one-text">学习计划</text>
-</view>
-
-<!-- 学习札记 -->
-<view id='section-two' bindtap='goToTipTwo'>
-<image class='tip-two' src='../../images/tip-two.png' mode="widthFix"></image>
-<text class='two-text'>学习tip</text>
-</view>
-
+    <!-- 学习计划 -->
+    <view id='section-one' bindtap='goToTipOne'>
+        <image class='tip-one' src="../../images/tip-one.png" mode="widthFix"></image>
+        <text class="one-text">学习计划</text>
+    </view>
+    <!-- 学习札记 -->
+    <view id='section-two' bindtap='goToTipTwo'>
+        <image class='tip-two' src='../../images/tip-two.png' mode="widthFix"></image>
+        <text class='two-text'>学习tip</text>
+    </view>
 </view>

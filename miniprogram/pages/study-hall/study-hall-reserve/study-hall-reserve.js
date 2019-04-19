@@ -85,6 +85,7 @@ Page({
   onShareAppMessage: function () {
 
   },
+  /* 页面初始化，获得当前时间、用户openid、上一页面传参 */
   onLoad: function (option) {
     this.setData({
       idx: option.id,
@@ -157,6 +158,7 @@ Page({
     })
   },
   submit () {
+    //表格完整检测
     if (this.data.book.user_name == '' || this.data.book.user_call == ''||this.data.book.room_time == ''){
       wx.showModal({
         title: '提示',
@@ -177,7 +179,8 @@ Page({
           console.error('[云函数] [login] 调用失败', err)
         }
       });
-      //防止两个用户同时进到预定页面，预定出错
+      /* ****************************多并发处理**************************** */
+      //防止两个用户同时进到预定页面，预定出错。
       const db = wx.cloud.database({});
       const usercount = db.collection('usercount');
       usercount.where({
@@ -216,6 +219,7 @@ Page({
                           }
                         }
                       })
+                      /* ****************************多并发处理**************************** */
                     }else{
                       wx.showModal({
                         title: '提示',
@@ -283,36 +287,3 @@ Page({
     }
   }
 })
-/* 
-usercount.doc(this.oppid).update({
-                  data: {
-                    usercount_count: this.money - this.data.book.room_price
-                  }
-                })
-                // console.log(this.data.idx)
-                wx.cloud.callFunction({
-                  // 云函数名称
-                  name: 'time',
-                  // 传给云函数的参数
-                  data: {
-
-                  },
-                }).then(res => {
-                  this.time = JSON.parse(res.result)
-                  const db = wx.cloud.database({});
-                  const reserve = db.collection('studyhall-reserve');
-                  reserve.add({
-                    data: {
-                      studyhallreserve_begintime: this.time.sysTime2,
-                      studyhallreserve_finishtime: Date.parse(new Date(this.time.sysTime2.replace(/-/g, '/'))) / 1000 + this.data.book.room_time * 3600,
-                      studyhallreserve_sid: this.data.book.room_id,
-                      studyhallreserve_hour: this.data.book.room_time
-                    }
-                  }).then(res => {
-                    console.log(res)
-                  })
-                })
-                wx.navigateBack({
-                  delta: 1
-                })
- */

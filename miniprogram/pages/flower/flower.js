@@ -1,7 +1,6 @@
 // pages/flower/flower.js
 var num = 60 //计时器计数标志
 Page({
-
   /**
    * 页面的初始数据
    */

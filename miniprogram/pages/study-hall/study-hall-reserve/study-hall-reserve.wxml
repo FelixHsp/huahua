@@ -1,3 +1,4 @@
+<!-- 预定上部栏 -->
 <view id='image-wrapper'>
   <image class='img' src='../../../images/huahua.png'></image>
   <view class='name'>mine自习室</view>
@@ -30,12 +31,14 @@
     <input class='user-call-value' bindinput='usercall'></input>
   </view>
 </view>
+<!-- 注意事项 -->
 <view id='tips-wrapper'>
   <view>注意事项</view>
   <view>1.点击确定预定后，会从您账户余额中扣除相应费用，请确保当前账户余额足够。如需充值请联系管理人员或到店面进行充值。</view>
   <view>2.确定后将立即扣除费用，如提前离开将不予退还。</view>
   <view>3.每次最多预定三个小时。</view>
 </view>
+<!-- 提交按钮 -->
 <view id='sub'>
   <button type='default' bindtap='submit'>点击确定</button>
 </view>

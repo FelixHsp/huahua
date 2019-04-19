@@ -9,8 +9,6 @@
     "pages/mine/wallet/wallet",
     "pages/tips/tips",
     "pages/mine/mine",
-    "pages/index/index",
-    "pages/userConsole/userConsole",
     "pages/study-hall/study-hall-reserve/study-hall-reserve",
     "pages/study-hall/study-hall-detail/study-hall-detail",
     "pages/mine/about/about"
