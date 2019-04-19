@@ -14,7 +14,8 @@ Page({
     add:'',
     items: [
       { name: '已完成', value: '已完成' },
-      { name: '未完成', value: '未完成' },]
+      { name: '未完成', value: '未完成' },],
+      tag:true
   },
   /**
    * 生命周期函数--监听页面加载
@@ -107,7 +108,7 @@ Page({
     const db = wx.cloud.database({});
     const plan = db.collection('plan');
     plan.where({
-      _openid: 'oRlb64vQFxCHNsbvzo_HpvFzRDGk',
+      _openid: oppid,
       plan_tag:false
     }).get({
       success: (res) => {
@@ -117,6 +118,11 @@ Page({
           ['array']: this.ls
         })
         console.log(this.data.array)
+      },
+      fail: (res) => {
+        this.setData({
+          tag:false
+        })
       }
     });
     plan.where({
@@ -217,10 +223,12 @@ Page({
      * 弹窗
      */
   showDialogBtn: function () {
-
-    this.setData({
-      showModal: true
-    })
+    // console.log(this.data.tag)
+    if(this.data.tag){
+      this.setData({
+        showModal: true
+      })
+    }
   },
   /**
    * 弹出框蒙层截断touchmove事件

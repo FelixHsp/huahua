@@ -68,17 +68,8 @@ Page({
   onShareAppMessage: function () {
 
   },
+  //页面初始，获取时间，温度，用户openid
   onLoad: function () {
-    /* wx.cloud.callFunction({
-      name: 'login',
-      data: {},
-      success: res => {
-        console.log('[云函数] [login] user openid: ', res.result.openid)
-      },
-      fail: err => {
-        console.error('[云函数] [login] 调用失败', err)
-      }
-    }) */
     wx.cloud.callFunction({
       // 云函数名称
       name: 'weather',
@@ -170,6 +161,7 @@ Page({
       }
     })
   }, */
+  //点击房子，判断是否可用，跳转到预定页面或弹框提示
   click1: function () {
     const db = wx.cloud.database({});
     const studyhalls = db.collection('studyhall-reserve');

@@ -10,7 +10,7 @@
 <!-- 学习札记 -->
 <view id='section-two' bindtap='goToTipTwo'>
 <image class='tip-two' src='../../images/tip-two.png' mode="widthFix"></image>
-<text class='two-text'>学习札记</text>
+<text class='two-text'>学习tip</text>
 </view>
 
 </view>

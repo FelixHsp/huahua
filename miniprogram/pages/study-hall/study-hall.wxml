@@ -1,4 +1,4 @@
-<!-- 自习室背景 -->
+<!-- 自习室背景begin -->
 <view id="background">
   <image src='../../images/flower-hua.png'></image>
   <image src='../../images/flower-hua2.png'></image>
@@ -23,9 +23,9 @@
     <view>学海无涯苦作舟</view>
   </view>
 </view>
-<!-- 自习室背景 -->
+<!-- 自习室背景finish -->
 
-<!-- 自习室种类展示 -->
+<!-- 自习室种类展示begin -->
 <view id='room-type'>
   <view class='text'>点击下方小房子预定自习室</view>
   <view class='type'>
@@ -35,9 +35,9 @@
     <view class='two'>双人自习室</view>
   </view>
 </view>
-<!-- 自习室种类展示 -->
+<!-- 自习室种类展示finish -->
 
-<!-- 自习室 -->
+<!-- 自习室begin -->
 <view id='room'>
   <image src='../../images/one-select.png' bindtap='click1'></image>
   <image src='../../images/one-select.png' bindtap='click2'></image>
@@ -49,4 +49,4 @@
   <image src='../../images/two-select.png' bindtap='click8'></image>
   <image src='../../images/two-select.png' bindtap='click9'></image>
 </view>
-<!-- 自习室 -->
+<!-- 自习室finish -->

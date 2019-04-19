@@ -12,7 +12,8 @@ Page({
     time:'',
     showDialog: false,
     add: '',
-    items: []
+    items: [],
+    tag:true
   },
   /**
    * 生命周期函数--监听页面加载
@@ -125,6 +126,12 @@ Page({
           ['array']: this.ls
         })
         console.log(this.data.array)
+      },
+      fail:(err)=>{
+        this.setData({
+          tag:false
+        })
+        console.log(this.data.tag)
       }
     });
   },
@@ -198,10 +205,11 @@ Page({
      * 弹窗
      */
   showDialogBtn: function () {
-
-    this.setData({
-      showModal: true
-    })
+    if(this.data.tag){
+      this.setData({
+        showModal: true
+      })
+    }else{}
   },
   /**
    * 弹出框蒙层截断touchmove事件

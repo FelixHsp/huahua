@@ -64,13 +64,13 @@ Page({
     this.play()
     this.data.long=this.data.min + 1
     if (this.data.long>=15 && 30>this.data.long){
-      this.data.price=10
+      this.data.price='10'
     } else if (this.data.long >= 30 && 60 > this.data.long){
-      this.data.price=25
+      this.data.price='25'
     } else if (this.data.long >= 60 && 120 > this.data.long){
-      this.data.price=55
+      this.data.price='55'
     }else if(this.data.long == 120){
-      this.data.price==120
+      this.data.price=='120'
     }
     // console.log(this.data.price)
   },

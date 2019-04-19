@@ -1,12 +1,12 @@
 {
   "pages": [
     "pages/study-hall/study-hall",
+    "pages/tips/one/one",
+    "pages/tips/two/two",
     "pages/flower/flower",
     "pages/mine/bill/bill",
     "pages/mine/record/record",
-    "pages/tips/two/two",
     "pages/mine/wallet/wallet",
-    "pages/tips/one/one",
     "pages/tips/tips",
     "pages/mine/mine",
     "pages/index/index",
