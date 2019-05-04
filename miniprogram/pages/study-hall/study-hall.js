@@ -52,7 +52,18 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+    wx.cloud.callFunction({
+      // 云函数名称
+      name: 'time',
+      // 传给云函数的参数
+      data: {
 
+      },
+    }).then(res => {
+      // 计算时间戳
+      this.time = Date.parse(new Date(JSON.parse(res.result).sysTime2.replace(/-/g, '/'))) / 1000
+    })
+    wx.stopPullDownRefresh()
   },
 
   /**
@@ -167,13 +178,14 @@ Page({
     const studyhalls = db.collection('studyhall-reserve');
     studyhalls.where({
       studyhallreserve_sid: '1'
-    })
+    }).orderBy('studyhallreserve_begintime', 'desc')
       .get({
         success: res => {
           /* console.log(typeof (res.data.reverse()[0].studyhallreserve_finishtime))
           console.log(typeof(this.time)) */
-          this.data.retationtime = res.data.reverse()[0].studyhallreserve_finishtime
-          // console.log(this.data.retationtime)
+          this.data.retationtime = res.data[0].studyhallreserve_finishtime
+          console.log(this.data.retationtime)
+          console.log(this.time)
           // console.log(util.formatTime(this.data.retationtime, 'Y/M/D h:m:s'));
           if (this.data.retationtime * 1 >= this.time * 1) {
             wx.showModal({
@@ -182,12 +194,12 @@ Page({
               success: function () {
               }
             })
-            // console.log(1)
+            console.log(1)
           } else {
             wx.navigateTo({
               url: '../study-hall/study-hall-reserve/study-hall-reserve?id=1',
             })
-            // console.log(2)
+            console.log(2)
           }
         }
       })

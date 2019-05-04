@@ -5,7 +5,7 @@
       <image src='../imgs/jifen.png'></image>
       <view>积分:{{record}}</view>
     </view>
-    <view class='bill'>
+    <view class='bill' bindtap='open'>
       <image src='../imgs/pay.png'></image>
       <view>余额:{{bill}}元</view>
     </view>
