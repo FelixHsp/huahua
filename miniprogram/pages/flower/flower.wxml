@@ -1,7 +1,7 @@
 <!--pages/flower/flower.wxml-->
 <view id='father'>
   <view id='main' wx:if="{{isShow}}">
-    <image class='flowers' src='https://6c65-learninglife-c8aa8e-1258848626.tcb.qcloud.la/flowers/0.png?sign=70012613ac5649d384038aa9696823f8&t=1555302385' wx:if='{{!isFloShow}}'></image>
+    <image class='flowers' src='https://6c65-learninglife-c8aa8e-1258848626.tcb.qcloud.la/flower%20new/14.png?sign=153ce4281792aab898853541504d1e73&t=1561214883' wx:if='{{!isFloShow}}'></image>
     <image class='flowers2' src='{{picture}}' wx:if='{{isFloShow}}'></image>
     <view id='time'>
       <slider wx:if='{{!isFloShow}}' min='1' max="120" step="1" value='45' block-size='10' block-color='#99cc99' backgroundColor='#fff' activeColor='#99cc99' bindchanging='bindValue' disabled='{{isAbled}}' />
@@ -25,14 +25,14 @@
     <view id='content'>
       <!-- <text>选择你想养的花</text> -->
       <view id='img'>
-        <image data-num="1" class="{{_num==1?'chose':''}}" bindtap='click1' src='https://6c65-learninglife-c8aa8e-1258848626.tcb.qcloud.la/flowers/1.png?sign=d2bbfa574e2b912c16ab6e1db5840b84&t=1555302606'></image>
-        <image data-num="2" class="{{_num==2?'chose':''}}" bindtap='click2' src='https://6c65-learninglife-c8aa8e-1258848626.tcb.qcloud.la/flowers/2.png?sign=a15fd79a2538762dfbd9372d98c8c960&t=1555302683'></image>
-        <image data-num="3" class="{{_num==3?'chose':''}}" bindtap='click3' src='https://6c65-learninglife-c8aa8e-1258848626.tcb.qcloud.la/flowers/3.png?sign=1daae1dd2bba22e26698edd09b8b8502&t=1555302696'></image>
-        <image data-num="4" class="{{_num==4?'chose':''}}" bindtap='click4' src='https://6c65-learninglife-c8aa8e-1258848626.tcb.qcloud.la/flowers/4.png?sign=b7f9f3db0787a5d9e32f88f125bb5651&t=1555302716'></image>
-        <image data-num="5" class="{{_num==5?'chose':''}}" bindtap='click5' src='https://6c65-learninglife-c8aa8e-1258848626.tcb.qcloud.la/flowers/5.png?sign=1c6f7e44745a4df05b307eef0980fc81&t=1555302730'></image>
-        <image data-num="6" class="{{_num==6?'chose':''}}" bindtap='click6' src='https://6c65-learninglife-c8aa8e-1258848626.tcb.qcloud.la/flowers/6.png?sign=20bd2ca9ce8307375249dda952187dca&t=1555302743'></image>
+        <image data-num="1" class="{{_num==1?'chose':''}}" bindtap='click1' src='https://6c65-learninglife-c8aa8e-1258848626.tcb.qcloud.la/flower%20new/36.png?sign=0d1452d52b41abf6c6f11ae2780d8d17&t=1561213915'></image>
+        <image data-num="2" class="{{_num==2?'chose':''}}" bindtap='click2' src='https://6c65-learninglife-c8aa8e-1258848626.tcb.qcloud.la/flower%20new/32.png?sign=ad1887531a3657a401b712dfb333bb6a&t=1561213947'></image>
+        <image data-num="3" class="{{_num==3?'chose':''}}" bindtap='click3' src='https://6c65-learninglife-c8aa8e-1258848626.tcb.qcloud.la/flower%20new/50.png?sign=df7f35d559b0816245c959c2c4cdf8dc&t=1561213958'></image>
+        <image data-num="4" class="{{_num==4?'chose':''}}" bindtap='click4' src='https://6c65-learninglife-c8aa8e-1258848626.tcb.qcloud.la/flower%20new/42.png?sign=5080b0503b2b93a3a5f4cf8b98d92599&t=1561213972'></image>
+        <image data-num="5" class="{{_num==5?'chose':''}}" bindtap='click5' src='https://6c65-learninglife-c8aa8e-1258848626.tcb.qcloud.la/flower%20new/41.png?sign=f22d8ff4e49c43c7cc2c2241b7e39282&t=1561213984'></image>
+        <image data-num="6" class="{{_num==6?'chose':''}}" bindtap='click6' src='https://6c65-learninglife-c8aa8e-1258848626.tcb.qcloud.la/flower%20new/40.png?sign=8555462a365c1ab83bea1c92e1046e93&t=1561213995'></image>
       </view>
-      <button bindtap='start'>确定</button>
+      <button bindtap='start' class="star">确定</button>
     </view>
   </view>
 </view>

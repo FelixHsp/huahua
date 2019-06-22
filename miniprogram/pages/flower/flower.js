@@ -194,42 +194,42 @@ Page({
   //选花
   click1: function(e) {
     this.setData({
-      picture: 'https://6c65-learninglife-c8aa8e-1258848626.tcb.qcloud.la/flowers/1.png?sign=d2bbfa574e2b912c16ab6e1db5840b84&t=1555302606',
+      picture: 'https://6c65-learninglife-c8aa8e-1258848626.tcb.qcloud.la/flower%20new/36.png?sign=0d1452d52b41abf6c6f11ae2780d8d17&t=1561213915',
       _num: e.target.dataset.num
     })
 
   },
   click2: function(e) {
     this.setData({
-      picture: 'https://6c65-learninglife-c8aa8e-1258848626.tcb.qcloud.la/flowers/2.png?sign=a15fd79a2538762dfbd9372d98c8c960&t=1555302683',
+      picture: 'https://6c65-learninglife-c8aa8e-1258848626.tcb.qcloud.la/flower%20new/32.png?sign=ad1887531a3657a401b712dfb333bb6a&t=1561213947',
       _num: e.target.dataset.num
 
     })
   },
   click3: function(e) {
     this.setData({
-      picture: 'https://6c65-learninglife-c8aa8e-1258848626.tcb.qcloud.la/flowers/3.png?sign=1daae1dd2bba22e26698edd09b8b8502&t=1555302696',
+      picture: 'https://6c65-learninglife-c8aa8e-1258848626.tcb.qcloud.la/flower%20new/50.png?sign=df7f35d559b0816245c959c2c4cdf8dc&t=1561213958',
       _num: e.target.dataset.num
 
     })
   },
   click4: function(e) {
     this.setData({
-      picture: 'https://6c65-learninglife-c8aa8e-1258848626.tcb.qcloud.la/flowers/4.png?sign=b7f9f3db0787a5d9e32f88f125bb5651&t=1555302716',
+      picture: 'https://6c65-learninglife-c8aa8e-1258848626.tcb.qcloud.la/flower%20new/42.png?sign=5080b0503b2b93a3a5f4cf8b98d92599&t=1561213972',
       _num: e.target.dataset.num
 
     })
   },
   click5: function(e) {
     this.setData({
-      picture: 'https://6c65-learninglife-c8aa8e-1258848626.tcb.qcloud.la/flowers/5.png?sign=1c6f7e44745a4df05b307eef0980fc81&t=1555302730',
+      picture: 'https://6c65-learninglife-c8aa8e-1258848626.tcb.qcloud.la/flower%20new/41.png?sign=f22d8ff4e49c43c7cc2c2241b7e39282&t=1561213984',
       _num: e.target.dataset.num
 
     })
   },
   click6: function(e) {
     this.setData({
-      picture: 'https://6c65-learninglife-c8aa8e-1258848626.tcb.qcloud.la/flowers/6.png?sign=20bd2ca9ce8307375249dda952187dca&t=1555302743',
+      picture: 'https://6c65-learninglife-c8aa8e-1258848626.tcb.qcloud.la/flower%20new/40.png?sign=8555462a365c1ab83bea1c92e1046e93&t=1561213995',
       _num: e.target.dataset.num
     })
   },
