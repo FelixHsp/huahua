@@ -1,8 +1,0 @@
-var rq = require('request-promise')
-exports.main = (event, context) => {
-  var res = rq('https://www.tianqiapi.com/api/?version=v1&cityid=' + event.code).then(html => {
-    return html;
-  })
-  console.log(event);
-  return res
-}

@@ -1,11 +1,11 @@
 <!-- 自习室背景begin -->
 <view id="background">
-  <image src='../../images/flower-hua.png'></image>
-  <image src='../../images/flower-hua2.png'></image>
-  <image src='../../images/flower-hua3.png'></image>
-  <image src='../../images/flower-hua4.png'></image>
-  <image src='../../images/feiji_1.png'></image>
-  <image src='../../images/feiji.png'></image>
+  <image class='hua1' src='../../images/flower-hua.png'></image>
+  <image class='hua2' src='../../images/flower-hua2.png'></image>
+  <image class='hua3' src='../../images/flower-hua3.png'></image>
+  <image class='hua4' src='../../images/flower-hua4.png'></image>
+  <image class='feiji1' src='../../images/feiji_1.png'></image>
+  <image class='feiji2' src='../../images/feiji.png'></image>
   <view id='date'>
     <!-- <view>{{weather.city}}</view>
     <view class='year'>{{nowYear}}</view>

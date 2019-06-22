@@ -77,12 +77,35 @@ Page({
     });
   },
   open: function() {
-    wx.showModal({
-      title: '您的openid',
-      content: ''+oppid,
-      success: function () {
+    /* wx.showModal({
+      title: '充值',
+      content: '点击确定将为您的账户充值50元',
+      success: (res)=> {
+        if (res.confirm) {
+          const db = wx.cloud.database({});
+          const usercount = db.collection('usercount');
+          usercount.doc(this.oppid).update({
+            data: {
+              usercount_count: this.data.bill+50
+            }
+          }).then(res=>{
+            usercount.where({
+              _openid: this.oppid
+            }).get({
+              success: (res) => {
+                // console.log(res.data[0].usercount_count)
+                // var bill1
+                // this.bill1 = res.data[0].usercount_count
+                this.setData({
+                  bill: res.data[0].usercount_count
+                });
+                console.log(this.data.bill)
+              }
+            })
+          })
+        }
       }
-    })
+    }) */
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
