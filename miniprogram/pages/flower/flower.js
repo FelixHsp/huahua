@@ -19,7 +19,9 @@ Page({
     time:'',
     value:'',
     tag:'',
-    oppid:''
+    oppid:'',
+    money:'',
+    userid:''
   },
 
   //从前台切到后台的时候重置计时器
@@ -51,6 +53,19 @@ Page({
 
   //选花之后的确定按钮
   start: function(e) {
+    const db = wx.cloud.database({});
+    const usercount = db.collection('usercount');
+    usercount.where({ _openid: this.data.oppid }).get({
+      success: (res) => {
+        this.setData({
+          money: res.data[0].usercount_count
+        })
+        console.log(this.data.money)
+      },
+      fail: (err) => {
+        console.error(err)
+      }
+    })
     this.setData({
       isAbled: true,
       isShow: true,
@@ -84,6 +99,19 @@ Page({
       isFloShow: false,
       // _crl: 0
     })
+    const db = wx.cloud.database({});
+    const usercount = db.collection('usercount');
+    usercount.where({ _openid: this.data.oppid }).get({
+      success: (res) => {
+        this.setData({
+          money: res.data[0].usercount_count
+        })
+        console.log(this.data.money)
+      },
+      fail: (err) => {
+        console.error(err)
+      }
+    })
     clearInterval(this.data.loading);
     num = 60; //重置标志位
     return
@@ -92,7 +120,7 @@ Page({
   //定时器执行函数
   move() {
     console.log(this.data.min+1)
-    if (this.data.min==0 && this.data.sec=='02'){
+    if (this.data.min==14 && this.data.sec=='55'){
       /* console.log(this.data.long)
       console.log(this.data.price) */
       const db = wx.cloud.database({});
@@ -105,55 +133,11 @@ Page({
           flower_begin:this.data.time
         }
       });
-      const integral = db.collection('integral');
-      integral.where({ _openid: this.data.oppid}).get({
-        success: (res) => {
-          // console.log(JSON.stringify(res.data))
-          // this.data.value = res.data[0].integral_value;
-          if(JSON.stringify(res.data)=='[]'){
-            integral.add({
-              data: {
-                integral_value: '0'
-              }
-            })
-          }else{
-            this.data.value = res.data[0].integral_value;
-            db.collection('integral').doc(this.oppid).update({
-              // data 传入需要局部更新的数据
-              data: {
-                // 表示将 done 字段置为 true
-                integral_value: this.data.value * 1 + this.data.price * 1
-              },
-              success(res) {
-                // console.log(res.data)
-              }
-            })
+      const usercount = db.collection('usercount');
+      usercount.doc(this.data.userid).update({
+          data:{
+            usercount_count:this.data.money*1+this.data.price*1
           }
-          console.log(this.data.value)
-          /*this.data.tag=2;
-          console.log(this.data.tag)
-          if (this.data.tag == 2) {
-            db.collection('integral').doc(this.oppid).update({
-              // data 传入需要局部更新的数据
-              data: {
-                // 表示将 done 字段置为 true
-                integral_value:this.data.value*1 + this.data.price*1
-              },
-              success(res) {
-                console.log(res.data)
-              }
-            })
-          }else{
-            integral.add({
-              data: {
-                integral_value: '0'
-              }
-            })
-          } */
-        },
-        fail:(err)=>{
-          console.error(err)
-        }
       })
     }
     
@@ -233,7 +217,14 @@ Page({
       _num: e.target.dataset.num
     })
   },
-
+  gogouwu:function(){
+    wx.navigateTo({
+      url: '../gouwu/gouwu',
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
+    })
+  },
   onLoad: function(){
     wx.cloud.callFunction({
       name: 'login',
@@ -242,22 +233,8 @@ Page({
         this.setData({
           oppid:res.result.openid
         })
-        console.log(this.data.oppid)
-        const db = wx.cloud.database({});
-        const integral = db.collection('integral');
-        integral.where({ _openid: this.data.oppid }).get({
-          success: (res) => {
-            // console.log(JSON.stringify(res.data))
-            // this.data.value = res.data[0].integral_value;
-            if (JSON.stringify(res.data) == '[]') {
-              integral.add({
-                data: {
-                  integral_value: '0'
-                }
-              })
-            }
-          }
-        })
+        this.oppid=res.result.openid
+        console.log(this.oppid)
       },
       fail: err => {
         console.error('[云函数] [login] 调用失败', err)
@@ -274,6 +251,19 @@ Page({
       this.data.time = JSON.parse(res.result).sysTime2
       console.log(this.data.time)  
     });
-    
+    const db = wx.cloud.database({});
+    const usercount = db.collection('usercount');
+    usercount.where({ _openid: this.data.oppid }).get({
+      success: (res) => {
+        this.setData({
+          money: res.data[0].usercount_count,
+          userid:res.data[0]._id
+        })
+        console.log(this.data.money)
+      },
+      fail: (err) => {
+        console.error(err)
+      }
+    })
   }
 })

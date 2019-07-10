@@ -67,7 +67,7 @@ page{
   position: absolute;
   color: #999;
   top: 0;
-  left: 85%;
+  left: 80%;
 }
 #content-wrapper .user-name-value{
   position: absolute;

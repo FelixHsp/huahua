@@ -24,6 +24,11 @@
     class='img-wallet'></image>
     我的钱包
     </view>
+     <view class='wallet' bindtap='moveGoods'>
+      <image src='imgs/huowu.png'
+      class='img-wallet'></image>
+      我的订单
+    </view>
     <view class='about'>
     <image src='imgs/load.png'
     class='img-about'></image>

@@ -4,7 +4,7 @@
     <image class='img-pay' src='../imgs/checklist.png'/>
     <text class='title'>{{itemName.studyhallreserve_studyhallname}}</text>
     <view class='left'>
-    <view class='pay'>-{{itemName.studyhallreserve_price}}元</view>
+    <view class='pay'>-{{itemName.studyhallreserve_price}}积分</view>
     <view class='time'>{{itemName.studyhallreserve_begintime}}</view>
     </view>
   </view>

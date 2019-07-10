@@ -17,7 +17,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    wx.getUserInfo({
+      success: function (res) {
+        var userInfo = res.userInfo
+        var nickName = userInfo.nickName
+        var avatarUrl = userInfo.avatarUrl
+        var gender = userInfo.gender //性别 0：未知、1：男、2：女
+        var province = userInfo.province
+        var city = userInfo.city
+        var country = userInfo.country
+      }
+    })
+    console.log()
   },
 
   /**
@@ -62,6 +73,25 @@ Page({
     }).then(res => {
       // 计算时间戳
       this.time = Date.parse(new Date(JSON.parse(res.result).sysTime2.replace(/-/g, '/'))) / 1000
+    })
+    const db = wx.cloud.database({});
+    const usercount = db.collection('usercount');
+    usercount.where({
+      _openid: oppid
+    }).get({
+      success: function (res) {
+        console.log(res.data)
+        if(res.data==''){
+          usercount.add({
+            data: {
+              usercount_count: '0'
+            }
+          })
+        }
+      },
+      fail: function () {
+        
+      }
     })
     wx.stopPullDownRefresh()
   },
@@ -122,16 +152,20 @@ Page({
     });
     const db = wx.cloud.database({});
     const usercount = db.collection('usercount');
-    usercount.doc(oppid).get({
+    usercount.where({
+      _openid:oppid
+    }).get({
       success: function (res) {
-        console.log(res)
+        console.log(res.data)
+        if (res.data == '') {
+          usercount.add({
+            data: {
+              usercount_count: '0'
+            }
+          })
+        }
       },
       fail: function () {
-        usercount.add({
-          data: {
-            usercount_count: '0'
-          }
-        })
       }
     })
     wx.cloud.callFunction({

@@ -1,9 +1,11 @@
 {
   "pages": [
     "pages/study-hall/study-hall",
+    "pages/mine/goods/goods",
+    "pages/flower/flower",
+    "pages/gouwu/gouwu",
     "pages/tips/one/one",
     "pages/tips/two/two",
-    "pages/flower/flower",
     "pages/mine/bill/bill",
     "pages/mine/record/record",
     "pages/mine/wallet/wallet",

@@ -155,3 +155,12 @@ page {
 .kong{
   height: 240px;
 }
+#gouwuche{
+  position: absolute;
+  top: -50px;
+  left: 5%;
+}
+#gouwuche image{
+  width: 40px;
+  height: 40px;
+}

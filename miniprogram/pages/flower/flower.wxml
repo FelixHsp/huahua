@@ -11,6 +11,9 @@
         <button wx:if="{{isBtnShow}}" bindtap='ok'>开始</button>
         <button wx:if="{{!isBtnShow}}" bindtap='giveUp'>放弃</button>
       </view>
+      <view id="gouwuche" wx:if='{{!isFloShow}}' bindtap="gogouwu">
+        <image src="../../images/gouwuche.png"></image>
+      </view>
       <view wx:if='{{!isFloShow}}' id='content1'>
         <text>使用方法:</text>
         <text>1.点击开始后可以选择一个你喜欢的样式,确定后花将开始成长。过程中若手机离开该画面，花自动凋谢。</text>

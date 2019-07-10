@@ -1,0 +1,27 @@
+<view class='topTabSwiper'>
+    <view class='tab  {{currentData == 0 ? "tabBorer" : ""}}'  data-current = "0" bindtap='checkCurrent'>可用兑换码</view>
+    <view class='tab  {{currentData == 1 ? "tabBorer" : ""}}'  data-current = "1" bindtap='checkCurrent'>历史兑换码</view>
+</view>
+<swiper current="{{currentData}}" class='swiper' style="height:{{scrollHeight}}px" duration="300" bindchange="bindchange">
+<!-- 当前正在使用的自习室列表 -->
+  <swiper-item><view class='swiper_con'>
+    <view wx:for="{{list}}" wx:for-index="idx" wx:for-item="item" wx:key="{{itemName._id}}" id="list">
+      <view class='list-item'>
+        <image src="{{item.goods_img}}" class="goodsImg"></image>
+        <view>{{item.goods_name}}</view>
+        <view class="goodstime">生成时间：{{item.goodsreserve_time}}</view>
+        <view class="goodsma">{{item._id}}</view>
+      </view>    
+    </view>
+  </view></swiper-item>
+  <!-- 历史记录 -->
+  <swiper-item><view class='swiper_con'>
+    <view wx:for="{{list2}}" wx:for-index="idx" wx:for-item="item"  wx:key="{{itemName._id}}" id="list">
+      <view class='list-item'>
+       <image src="{{item.goods_img}}" class="goodsImg"></image>
+        <view class="goodsnameuse">{{item.goods_name}}</view>
+        <image src="../imgs/use.png" class="useimg"></image>
+      </view>
+    </view>
+  </view></swiper-item>
+</swiper>

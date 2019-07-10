@@ -271,6 +271,32 @@ Page({
         plan_tag:false
       }
     })
+    plan.where({
+      _openid: oppid,
+      plan_tag: false
+    }).get({
+      success: (res) => {
+        // console.log(res.data)
+        this.ls = res.data
+        this.setData({
+          ['array']: this.ls
+        })
+        console.log(this.data.array)
+      }
+    });
+    plan.where({
+      _openid: oppid,
+      plan_tag: true
+    }).get({
+      success: (res) => {
+        // console.log(res.data)
+        this.ls2 = res.data
+        this.setData({
+          ['array2']: this.ls2
+        })
+        console.log(this.data.array2)
+      }
+    })
     this.hideModal();
   },
 
@@ -293,6 +319,32 @@ Page({
           plan.doc(this.data.array[e.currentTarget.dataset.id]._id).remove({
             success(res) {
               
+            }
+          })
+          plan.where({
+            _openid: oppid,
+            plan_tag: false
+          }).get({
+            success: (res) => {
+              // console.log(res.data)
+              this.ls = res.data
+              this.setData({
+                ['array']: this.ls
+              })
+              console.log(this.data.array)
+            }
+          });
+          plan.where({
+            _openid: oppid,
+            plan_tag: true
+          }).get({
+            success: (res) => {
+              // console.log(res.data)
+              this.ls2 = res.data
+              this.setData({
+                ['array2']: this.ls2
+              })
+              console.log(this.data.array2)
             }
           })
         } else if (res.cancel) {
@@ -320,6 +372,32 @@ Page({
 
             }
           })
+          plan.where({
+            _openid: oppid,
+            plan_tag: false
+          }).get({
+            success: (res) => {
+              // console.log(res.data)
+              this.ls = res.data
+              this.setData({
+                ['array']: this.ls
+              })
+              console.log(this.data.array)
+            }
+          });
+          plan.where({
+            _openid: oppid,
+            plan_tag: true
+          }).get({
+            success: (res) => {
+              // console.log(res.data)
+              this.ls2 = res.data
+              this.setData({
+                ['array2']: this.ls2
+              })
+              console.log(this.data.array2)
+            }
+          })
         } else if (res.cancel) {
           console.log('用户点击取消')
         }
@@ -345,6 +423,32 @@ Page({
               plan_tag:true
             }
           })
+          plan.where({
+            _openid: oppid,
+            plan_tag: false
+          }).get({
+            success: (res) => {
+              // console.log(res.data)
+              this.ls = res.data
+              this.setData({
+                ['array']: this.ls
+              })
+              console.log(this.data.array)
+            }
+          });
+          plan.where({
+            _openid: oppid,
+            plan_tag: true
+          }).get({
+            success: (res) => {
+              // console.log(res.data)
+              this.ls2 = res.data
+              this.setData({
+                ['array2']: this.ls2
+              })
+              console.log(this.data.array2)
+            }
+          })
         } else if (res.cancel) {
           console.log('用户点击取消')
         }
@@ -368,6 +472,32 @@ Page({
           plan.doc(this.data.array2[e.currentTarget.dataset.id]._id).update({
             data: {
               plan_tag: false
+            }
+          })
+          plan.where({
+            _openid: oppid,
+            plan_tag: false
+          }).get({
+            success: (res) => {
+              // console.log(res.data)
+              this.ls = res.data
+              this.setData({
+                ['array']: this.ls
+              })
+              console.log(this.data.array)
+            }
+          });
+          plan.where({
+            _openid: oppid,
+            plan_tag: true
+          }).get({
+            success: (res) => {
+              // console.log(res.data)
+              this.ls2 = res.data
+              this.setData({
+                ['array2']: this.ls2
+              })
+              console.log(this.data.array2)
             }
           })
         } else if (res.cancel) {

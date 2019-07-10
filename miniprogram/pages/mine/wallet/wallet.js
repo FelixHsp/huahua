@@ -50,29 +50,24 @@ Page({
     integral.where({
       _openid: this.oppid
     }).get({
-      success: (res) => {
-        // console.log(res.data[0].usercount_count)
-        // var bill1
-        // this.bill1 = res.data[0].usercount_count
-        this.setData({
-          record: res.data[0].integral_value
-        });
-        console.log(this.data.record)
-      }
+      
     });
     const flower = db.collection('flower');
     flower.where({
       _openid: this.oppid,
       flower_prcie: db.command.gt('0')
-    }).get({
+    }).orderBy('flower_begin', 'desc').get({
       success: (res) => {
         // console.log(res.data[0].usercount_count)
         // var bill1
         // this.bill1 = res.data[0].usercount_count
+        console.log(res.data)
         this.setData({
           list:res.data
         });
-        console.log(this.data.list)
+        this.setData({
+          record: this.data.list.length
+        })
       }
     });
   },

@@ -20,6 +20,8 @@ Page({
   data: {
     idx:'',
     timearray:['半小时','一小时','两小时','三小时'],
+    openid:'',
+    userid:'',
     book:{
       room_id:'',
       room_time:'',
@@ -111,35 +113,35 @@ Page({
     })
     if(e.detail.value==0){
       this.setData({
-        ['book.room_price_yuan']:0.5*study_price+'元',
+        ['book.room_price_yuan']:0.5*study_price+'积分',
         ['book.room_price']: 0.5 * study_price,
         ['book.room_time']:0.5
       })
     }
     if (e.detail.value == 1) {
       this.setData({
-        ['book.room_price_yuan']: 1 * study_price + '元',
+        ['book.room_price_yuan']: 1 * study_price + '积分',
         ['book.room_price']: 1 * study_price,
         ['book.room_time']: 1
       })
     }
     if (e.detail.value == 2) {
       this.setData({
-        ['book.room_price_yuan']: 2 * study_price + '元',
+        ['book.room_price_yuan']: 2 * study_price + '积分',
         ['book.room_price']: 2 * study_price,
         ['book.room_time']: 2
       })
     }
     if (e.detail.value == 3) {
       this.setData({
-        ['book.room_price_yuan']: 3 * study_price + '元',
+        ['book.room_price_yuan']: 3 * study_price + '积分',
         ['book.room_price']: 3 * study_price,
         ['book.room_time']: 3
       })
     }
     if (e.detail.value == 4) {
       this.setData({
-        ['book.room_price_yuan']: 4 * study_price + '元',
+        ['book.room_price_yuan']: 4 * study_price + '积分',
         ['book.room_price']: 4 * study_price,
         ['book.room_time']: 4
       })
@@ -167,6 +169,14 @@ Page({
 
         }
       })
+    } else if (this.data.book.user_call.length != 11 || this.data.book.user_call[0]!=1){
+      wx.showModal({
+        title: '提示',
+        content: '请填写正确的手机号',
+        success: function () {
+
+        }
+      })
     }else{
       wx.cloud.callFunction({
         name: 'login',
@@ -189,6 +199,9 @@ Page({
           if (res.data[0].usercount_count>=this.data.book.room_price){
             console.log(res.data[0])
             this.money = res.data[0].usercount_count
+            this.setData({
+              userid:res.data[0]._id
+            })
             wx.cloud.callFunction({
               // 云函数名称
               name: 'time',
@@ -223,10 +236,10 @@ Page({
                     }else{
                       wx.showModal({
                         title: '提示',
-                        content: '本次将扣费' + this.data.book.room_price + '元,' + '付费后在我的里可以查看自习室预定详情。若点取消，需重新进入该页面进行预定。',
+                        content: '本次将扣除' + this.data.book.room_price + '积分,' + '点击确定后在我的里可以查看自习室预定详情。若点取消，需重新进入该页面进行预定。',
                         success: (res) => {
                           if (res.confirm) {
-                            usercount.doc(this.oppid).update({
+                            usercount.doc(this.data.userid).update({
                               data: {
                                 usercount_count: this.money - this.data.book.room_price
                               }

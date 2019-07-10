@@ -253,6 +253,18 @@ Page({
         notes_time: this.data.time
       }
     })
+    notes.where({
+      _openid: oppid
+    }).get({
+      success: (res) => {
+        // console.log(res.data)
+        this.ls = res.data
+        this.setData({
+          ['array']: this.ls
+        })
+        console.log(this.data.array)
+      }
+    })
     this.hideModal();
   },
 
@@ -275,6 +287,18 @@ Page({
           notes.doc(this.data.array[e.currentTarget.dataset.id]._id).remove({
             success(res) {
 
+            }
+          })
+          notes.where({
+            _openid: oppid
+          }).get({
+            success: (res) => {
+              // console.log(res.data)
+              this.ls = res.data
+              this.setData({
+                ['array']: this.ls
+              })
+              console.log(this.data.array)
             }
           })
           // console.log(e.currentTarget.dataset.id)

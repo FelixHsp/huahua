@@ -3,11 +3,11 @@
   <view class='wraper'>
     <view class='record'>
       <image src='../imgs/jifen.png'></image>
-      <view>积分:{{record}}</view>
+      <view>当前养花:{{record}}个</view>
     </view>
     <view class='bill' bindtap='open'>
       <image src='../imgs/pay.png'></image>
-      <view>余额:{{bill}}元</view>
+      <view>余额:{{bill}}积分</view>
     </view>
   </view>
 </view>

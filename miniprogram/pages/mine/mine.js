@@ -27,6 +27,11 @@ Page({
       url: 'wallet/wallet',
     })
   },
+  moveGoods() {
+    wx.navigateTo({
+      url: 'goods/goods',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

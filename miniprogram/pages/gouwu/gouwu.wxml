@@ -1,0 +1,7 @@
+<view id="top-words">可以使用积分兑换下列物品，点击兑换。</view>
+<view view wx:for="{{goodslist}}" wx:for-index="idx" wx:for-item="good" wx:key="{{good._id}}" class="goods" id="{{good._id}}" bindtap="goumai">
+  <image src="{{good.goods_img}}"></image>
+  <view id="goodsname">{{good.goods_name}}</view>
+  <view id="goodsprice">所需积分:{{good.goods_price}}</view>
+  <!-- <view id="goodsnumber">剩余库存:{{good.goods_number}}件</view> -->
+</view>
