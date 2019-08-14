@@ -13,11 +13,7 @@
     <view class='day'>{{nowDay}}</view>
     <view class='md'>/</view> -->
   </view>
-  <view id='weather'>
-    <view>{{weather.city}}</view>
-    <view>{{weather.date}}</view>
-    <view>{{weather.tem2}}{{weather.tem1}}</view>
-  </view>
+  
   <view id='content'>
     <view>书山有路勤为径</view>
     <view>学海无涯苦作舟</view>

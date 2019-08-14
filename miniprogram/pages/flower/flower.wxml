@@ -1,18 +1,21 @@
 <!--pages/flower/flower.wxml-->
-<view id='father'>
+<view id="pagee" style="background-color:{{pageBackgroundColor}}" wx:if='{{!isJihua}}'>
+  <view id='father'>
   <view id='main' wx:if="{{isShow}}">
     <image class='flowers' src='https://6c65-learninglife-c8aa8e-1258848626.tcb.qcloud.la/flower%20new/14.png?sign=153ce4281792aab898853541504d1e73&t=1561214883' wx:if='{{!isFloShow}}'></image>
-    <image class='flowers2' src='{{picture}}' wx:if='{{isFloShow}}'></image>
     <view id='time'>
       <slider wx:if='{{!isFloShow}}' min='1' max="120" step="1" value='45' block-size='10' block-color='#99cc99' backgroundColor='#fff' activeColor='#99cc99' bindchanging='bindValue' disabled='{{isAbled}}' />
       <text class='shengyushijian' wx:if='{{isFloShow}}'>剩余时间</text>
-      <text id='showTime'>{{min}}:{{sec}}</text>
+      <text id='showTime' style="color:{{wordColor}}">{{min}}:{{sec}}</text>
       <view>
         <button wx:if="{{isBtnShow}}" bindtap='ok'>开始</button>
-        <button wx:if="{{!isBtnShow}}" bindtap='giveUp'>放弃</button>
+        <button wx:if="{{!isBtnShow}}" bindtap='giveUp' class="buttonGive">放弃</button>
       </view>
       <view id="gouwuche" wx:if='{{!isFloShow}}' bindtap="gogouwu">
         <image src="../../images/gouwuche.png"></image>
+      </view>
+      <view id="gojihua" bindtap="gogoujihua">
+        <image src="../../images/jihua2.png"></image>
       </view>
       <view wx:if='{{!isFloShow}}' id='content1'>
         <text>使用方法:</text>
@@ -38,4 +41,130 @@
       <button bindtap='start' class="star">确定</button>
     </view>
   </view>
+</view>
+</view>
+
+<view id="jihua" wx:if='{{isJihua}}'>
+  <view class='topTabSwiper'>
+  <view class='tab  {{currentData == 0 ? "tabBorer" : ""}}' data-current="0" bindtap='checkCurrent'>未完成</view>
+  <view class='tab  {{currentData == 1 ? "tabBorer" : ""}}' data-current="1" bindtap='checkCurrent'>已完成</view>
+</view>
+<view class='fanhui' bindtap="gofanhui">
+    <image class="fanhui-img" src='../../images/返回.png'></image>
+</view>
+<swiper current="{{currentData}}" class='swiper' style="height:2000px;" duration="300" bindchange="bindchange">
+  <!-- 当前正在使用的自习室列表 -->
+  <swiper-item>
+    <view class='swiper_con'>
+       <view class='add' bindtap="showDialogBtn">
+        <image class="add-img" src='../../images/add.png'></image>
+      </view>
+      <!-- 模块 -->
+      <view wx:for="{{array}}" id="module" wx:key='{{item.index}}'>
+        <view class='plan'>
+          {{item.plan_detail}}
+        </view>
+        <view class='right' bindtap='del' data-id='{{index}}' >
+          删除计划
+        </view>
+        <view class='left' bindtap='change' data-id='{{index}}' >
+          已完成
+        </view>
+      </view>
+    
+      <!-- 文本编辑弹窗 -->
+      <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+      <view class="modal-dialog" wx:if="{{showModal}}">
+        <view class="modal-title">添加计划</view>
+        <view class="modal-content">
+          <view class="modal-input">
+            <input placeholder-class="input-holder" bindinput="inputChange" class="input" placeholder="请填写学习计划"></input>
+          </view>
+        </view>
+        <view class="modal-footer">
+          <view class="btn-cancel" bindtap="onCancel" data-status="cancel">取消</view>
+          <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
+        </view>
+      </view>
+
+
+      <!-- 计划情况 -->
+
+      <view class="free-dialog {{ showDialog ? 'free-dialog--show' : '' }}">
+        <view class="free-dialog__mask" bindtap="toggleDialog" />
+        <view class="free-dialog__container">
+          <view style="padding: 5% 5% 15%;">
+            <form bindsubmit='submit' bindreset="reset">
+              <view bindtap='freetoBack' class="free-button free-dialog-reset">取消</view>
+              <view bindtap='freeBack' class="free-button free-dialog-submit">确定</view>
+
+              <radio-group class='free-radios' bindchange="radioChange">
+                <label class="free-radio" bindtap="click" wx:for="{{items}}" wx:key="{{items}}" data-id="{{index}}" style="{{index==id?'background:#48c23d;color:#fff;':'background:#fff;color:#000;'}}">
+                  <radio value="{{item.name}}" name="{{item.value}}"></radio>
+                  <label class="free-text">{{item.value}}</label>
+                </label>
+              </radio-group>
+            </form>
+
+          </view>
+        </view>
+      </view>
+    </view>
+  </swiper-item>
+  <!-- 历史记录 -->
+  <swiper-item>
+    <view class='swiper_con'>
+
+      <!-- 模块 -->
+      <view wx:for="{{array2}}" id="module" wx:key='{{item.index}}'>
+        <view class='plan'>
+          {{item.plan_detail}}
+        </view>
+        <view class='right' bindtap='del2' data-id='{{index}}' >
+          删除计划
+        </view>
+        <view class='left' bindtap='change2' data-id='{{index}}' >
+          未完成
+        </view>
+      </view>
+      <!-- 文本编辑弹窗 -->
+      <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+      <view class="modal-dialog" wx:if="{{showModal}}">
+        <view class="modal-title">添加计划</view>
+        <view class="modal-content">
+          <view class="modal-input">
+            <input placeholder-class="input-holder" bindinput="inputChange" class="input" placeholder="请填写学习计划"></input>
+          </view>
+        </view>
+        <view class="modal-footer">
+          <view class="btn-cancel" bindtap="onCancel" data-status="cancel">取消</view>
+          <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
+        </view>
+      </view>
+
+
+      <!-- 计划情况 -->
+
+      <view class="free-dialog {{ showDialog ? 'free-dialog--show' : '' }}">
+        <view class="free-dialog__mask" bindtap="toggleDialog" />
+        <view class="free-dialog__container">
+          <view style="padding: 5% 5% 15%;">
+            <form bindsubmit='submit' bindreset="reset">
+              <view bindtap='freetoBack' class="free-button free-dialog-reset">取消</view>
+              <view bindtap='freeBack' class="free-button free-dialog-submit">确定</view>
+
+              <radio-group class='free-radios' bindchange="radioChange">
+                <label class="free-radio" bindtap="click" wx:for="{{items}}" wx:key="{{items}}" data-id="{{index}}" style="{{index==id?'background:#48c23d;color:#fff;':'background:#fff;color:#000;'}}">
+                  <radio value="{{item.name}}" name="{{item.value}}"></radio>
+                  <label class="free-text">{{item.value}}</label>
+                </label>
+              </radio-group>
+            </form>
+
+          </view>
+        </view>
+      </view>
+    </view>
+  </swiper-item>
+</swiper>
 </view>

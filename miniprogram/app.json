@@ -1,8 +1,8 @@
 {
   "pages": [
     "pages/study-hall/study-hall",
-    "pages/mine/goods/goods",
     "pages/flower/flower",
+    "pages/mine/goods/goods",
     "pages/gouwu/gouwu",
     "pages/tips/one/one",
     "pages/tips/two/two",
@@ -38,12 +38,6 @@
         "text": "专注学习",
         "iconPath": "images/hua0.png",
         "selectedIconPath": "images/hua.png"
-      },
-      {
-        "pagePath": "pages/tips/tips",
-        "text": "计划制定",
-        "iconPath": "images/tips0.png",
-        "selectedIconPath": "images/tips.png"
       },
       {
         "pagePath": "pages/mine/mine",

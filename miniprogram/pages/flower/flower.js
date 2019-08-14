@@ -1,5 +1,8 @@
 // pages/flower/flower.js
 var num = 60 //计时器计数标志
+var oppid;
+var ls;
+var ls2;
 Page({
   /**
    * 页面的初始数据
@@ -12,6 +15,7 @@ Page({
     picture: '', //图片选择
     isBtnShow: true, //按钮转换
     isFloShow: false, //默认图片显隐
+    isJihua:false,
     _num: 0, //选择花的时候点上会有特殊显示的标识位
     loading: '', //定时器
     long:'',
@@ -21,14 +25,22 @@ Page({
     tag:'',
     oppid:'',
     money:'',
-    userid:''
+    userid:'',
+    pageBackgroundColor: '#eee',
+    wordColor:'',
+    currentData: 0,
+    array: [],
+    array2: [],
+    showDialog: false,
+    add: '',
+    items: [
+      { name: '已完成', value: '已完成' },
+      { name: '未完成', value: '未完成' },],
+    tag: true
   },
 
   //从前台切到后台的时候重置计时器
-  onHide: function() {
-    this.giveUp()
-  },
-
+  
   //滑动silder时间数字改变
   bindValue: function(e) {
     this.setData({
@@ -39,18 +51,71 @@ Page({
   //开始按钮
   ok: function() {
     this.setData({
-      isShow: false
+      isShow: false,
     })
   },
 
   //倒计时
   play: function() {
     this.setData({
-      loading: setInterval(this.move, 1000)
+      loading: setInterval(this.move, 1000),
+      pageBackgroundColor: 'black',
+      wordColor:'white'
+    })
+    if (wx.setScreenBrightness) {
+      // 保持屏幕常亮 true / false
+      wx.setKeepScreenOn({
+        keepScreenOn: true
+      });
+      wx.setScreenBrightness({
+        value: 0.01
+      });
+    }
+    wx.setNavigationBarColor({
+      frontColor: '#ffffff',
+      backgroundColor: '#000000',
+      animation: {
+        duration: 400,
+        timingFunc: 'easeIn'
+      }
+    })
+    wx.cloud.callFunction({
+      // 云函数名称
+      name: 'time',
+      // 传给云函数的参数
+      data: {
+
+      },
+    }).then(res => {
+      this.data.time = JSON.parse(res.result).sysTime2
+      console.log(this.data.time)
+    });
+    const db = wx.cloud.database({});
+    const usercount = db.collection('usercount');
+    usercount.where({ _openid: this.data.oppid }).get({
+      success: (res) => {
+        this.setData({
+          money: res.data[0].usercount_count,
+          userid: res.data[0]._id
+        })
+        console.log(this.data.money)
+      },
+      fail: (err) => {
+        console.error(err)
+      }
     })
     // timer = setInterval(this.move, 1000);
   },
-
+  gogoujihua:function(){
+    this.setData({
+      isJihua:true
+    })
+  },
+  gofanhui:function(){
+    this.setData({
+      isJihua: false
+    })
+  },
   //选花之后的确定按钮
   start: function(e) {
     const db = wx.cloud.database({});
@@ -71,12 +136,11 @@ Page({
       isShow: true,
       isFloShow: true,
       isBtnShow: false,
-      min: this.data.min - 1,
-      // _crl: 1
+      
     })
     clearInterval(this.data.loading);
     this.play()
-    this.data.long=this.data.min + 1
+    this.data.long=this.data.min
     if (this.data.long>=15 && 30>this.data.long){
       this.data.price='10'
     } else if (this.data.long >= 30 && 60 > this.data.long){
@@ -98,6 +162,16 @@ Page({
       isAbled: false,
       isFloShow: false,
       // _crl: 0
+      pageBackgroundColor: '#eee',
+      wordColor:''
+    })
+    wx.setNavigationBarColor({
+      frontColor: '#ffffff',
+      backgroundColor: '#99cc99',
+      animation: {
+        duration: 400,
+        timingFunc: 'easeIn'
+      }
     })
     const db = wx.cloud.database({});
     const usercount = db.collection('usercount');
@@ -114,6 +188,10 @@ Page({
     })
     clearInterval(this.data.loading);
     num = 60; //重置标志位
+    wx.showModal({
+      title: '花已凋谢',
+      content: '由于您刚才离开了该页面，根据规则，计时清空。',
+    })
     return
   },
 
@@ -155,11 +233,13 @@ Page({
     }
 
     //秒到0了分-1
-    if (num == 0) {
-      this.setData({
-        min: this.data.min - 1
-      })
-      num = 60
+    if (num == 60 || num == 0) {
+      setTimeout(()=>{
+        this.setData({
+          min: this.data.min - 1
+        })
+      },1000)
+      num = 59;
       return
     }
     //每秒递减
@@ -225,15 +305,89 @@ Page({
       complete: function(res) {},
     })
   },
-  onLoad: function(){
+
+
+
+
+  bindchange: function (e) {
+    const that = this;
+    that.setData({
+      currentData: e.detail.current
+    })
+  },
+  //点击切换，滑块index赋值
+  checkCurrent: function (e) {
+    const that = this;
+
+    if (that.data.currentData === e.target.dataset.current) {
+      return false;
+    } else {
+
+      that.setData({
+        currentData: e.target.dataset.current
+      })
+    }
+  },
+  click: function (e) {
+    var id = e.currentTarget.dataset.id
+    var that = this
+    that.setData({
+      id: id
+    })
+  },
+  radioChange: function (e) {
+    console.log('radio发生change事件，携带value值为：', e.detail.value)
+    var that = this
+    that.setData({
+      value: e.detail.value
+    })
+    console.log(this.data.value)
+  },
+  toggleDialog() {
+    this.setData({
+      showDialog: !this.data.showDialog
+    });
+  },
+  freeBack: function () {
+    var that = this
+    if (this.data.value == 'show') {
+      wx.showModal({
+        title: '提示',
+        content: '你没有选择任何内容',
+      })
+    }
+    that.setData({
+      showDialog: !this.data.showDialog
+    })
+  },
+  freetoBack: function () {
+    var that = this
+    wx.showModal({
+      title: '提示',
+      content: '你没有选择任何内容',
+    })
+    that.setData({
+      showDialog: !this.data.showDialog,
+      value: 'show',
+      checked: false,
+    })
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    var that = this
+    that.setData({
+      value: 'show'
+    });
     wx.cloud.callFunction({
       name: 'login',
       data: {},
       success: res => {
         this.setData({
-          oppid:res.result.openid
+          oppid: res.result.openid
         })
-        this.oppid=res.result.openid
+        this.oppid = res.result.openid
         console.log(this.oppid)
       },
       fail: err => {
@@ -249,7 +403,7 @@ Page({
       },
     }).then(res => {
       this.data.time = JSON.parse(res.result).sysTime2
-      console.log(this.data.time)  
+      console.log(this.data.time)
     });
     const db = wx.cloud.database({});
     const usercount = db.collection('usercount');
@@ -257,12 +411,422 @@ Page({
       success: (res) => {
         this.setData({
           money: res.data[0].usercount_count,
-          userid:res.data[0]._id
+          userid: res.data[0]._id
         })
         console.log(this.data.money)
       },
       fail: (err) => {
         console.error(err)
+      }
+    })
+    wx.cloud.callFunction({
+      name: 'login',
+      data: {},
+      success: res => {
+        oppid = res.result.openid
+        console.log(oppid)
+      },
+      fail: err => {
+        console.error('[云函数] [login] 调用失败', err)
+      }
+    });
+    const plan = db.collection('plan');
+    plan.where({
+      _openid: oppid,
+      plan_tag: false
+    }).get({
+      success: (res) => {
+        // console.log(res.data)
+        this.ls = res.data
+        this.setData({
+          ['array']: this.ls
+        })
+        console.log(this.data.array)
+      },
+      fail: (res) => {
+        this.setData({
+          tag: false
+        })
+      }
+    });
+    plan.where({
+      _openid: oppid,
+      plan_tag: true
+    }).get({
+      success: (res) => {
+        // console.log(res.data)
+        this.ls2 = res.data
+        this.setData({
+          ['array2']: this.ls2
+        })
+        console.log(this.data.array2)
+      }
+    });
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+    if (this.data.isFloShow) {
+      this.giveUp()
+    }
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+    const db = wx.cloud.database({});
+    const plan = db.collection('plan');
+    plan.where({
+      _openid: oppid,
+      plan_tag: false
+    }).get({
+      success: (res) => {
+        // console.log(res.data)
+        this.ls = res.data
+        this.setData({
+          ['array']: this.ls
+        })
+        console.log(this.data.array)
+      }
+    });
+    plan.where({
+      _openid: oppid,
+      plan_tag: true
+    }).get({
+      success: (res) => {
+        // console.log(res.data)
+        this.ls2 = res.data
+        this.setData({
+          ['array2']: this.ls2
+        })
+        console.log(this.data.array2)
+      }
+    })
+    wx.stopPullDownRefresh()
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  },
+
+  //添加计划弹窗
+
+  /**
+     * 弹窗
+     */
+  showDialogBtn: function () {
+    // console.log(this.data.tag)
+    if (this.data.tag) {
+      this.setData({
+        showModal: true
+      })
+    }
+  },
+  /**
+   * 弹出框蒙层截断touchmove事件
+   */
+  preventTouchMove: function () {
+  },
+  /**
+   * 隐藏模态对话框
+   */
+  hideModal: function () {
+    this.setData({
+      showModal: false
+    });
+  },
+  /**
+   * 对话框取消按钮点击事件
+   */
+  inputChange: function (e) {
+    this.add = e.detail.value
+    // console.log(this.add)
+  },
+  onCancel: function () {
+    this.hideModal();
+  },
+  /**
+   * 对话框确认按钮点击事件
+   */
+  onConfirm: function () {
+    wx.showToast({
+      title: '添加成功',
+      icon: 'success',
+      duration: 2000
+    })
+    // console.log(this.add)
+    const db = wx.cloud.database({});
+    const plan = db.collection('plan');
+    plan.add({
+      data: {
+        plan_detail: this.add,
+        plan_tag: false
+      }
+    })
+    plan.where({
+      _openid: oppid,
+      plan_tag: false
+    }).get({
+      success: (res) => {
+        // console.log(res.data)
+        this.ls = res.data
+        this.setData({
+          ['array']: this.ls
+        })
+        console.log(this.data.array)
+      }
+    });
+    plan.where({
+      _openid: oppid,
+      plan_tag: true
+    }).get({
+      success: (res) => {
+        // console.log(res.data)
+        this.ls2 = res.data
+        this.setData({
+          ['array2']: this.ls2
+        })
+        console.log(this.data.array2)
+      }
+    })
+    this.hideModal();
+  },
+
+
+  //删除计划
+  del: function (e) {
+    wx.showModal({
+      title: '提示',
+      content: '是否删除计划',
+      success: (res) => {
+        if (res.confirm) {
+          wx.showToast({
+            title: '删除成功',
+            icon: 'success',
+            duration: 2000
+          })
+          // console.log(this.data.array[e.currentTarget.dataset.id]._id)
+          const db = wx.cloud.database({});
+          const plan = db.collection('plan');
+          plan.doc(this.data.array[e.currentTarget.dataset.id]._id).remove({
+            success(res) {
+
+            }
+          })
+          plan.where({
+            _openid: oppid,
+            plan_tag: false
+          }).get({
+            success: (res) => {
+              // console.log(res.data)
+              this.ls = res.data
+              this.setData({
+                ['array']: this.ls
+              })
+              console.log(this.data.array)
+            }
+          });
+          plan.where({
+            _openid: oppid,
+            plan_tag: true
+          }).get({
+            success: (res) => {
+              // console.log(res.data)
+              this.ls2 = res.data
+              this.setData({
+                ['array2']: this.ls2
+              })
+              console.log(this.data.array2)
+            }
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
+  del2: function (e) {
+    wx.showModal({
+      title: '提示',
+      content: '是否删除计划',
+      success: (res) => {
+        if (res.confirm) {
+          wx.showToast({
+            title: '删除成功',
+            icon: 'success',
+            duration: 2000
+          })
+          // console.log(this.data.array[e.currentTarget.dataset.id]._id)
+          const db = wx.cloud.database({});
+          const plan = db.collection('plan');
+          plan.doc(this.data.array2[e.currentTarget.dataset.id]._id).remove({
+            success(res) {
+
+            }
+          })
+          plan.where({
+            _openid: oppid,
+            plan_tag: false
+          }).get({
+            success: (res) => {
+              // console.log(res.data)
+              this.ls = res.data
+              this.setData({
+                ['array']: this.ls
+              })
+              console.log(this.data.array)
+            }
+          });
+          plan.where({
+            _openid: oppid,
+            plan_tag: true
+          }).get({
+            success: (res) => {
+              // console.log(res.data)
+              this.ls2 = res.data
+              this.setData({
+                ['array2']: this.ls2
+              })
+              console.log(this.data.array2)
+            }
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
+  change: function (e) {
+    wx.showModal({
+      title: '提示',
+      content: '是否已完成',
+      success: (res) => {
+        if (res.confirm) {
+          wx.showToast({
+            title: '该任务已完成',
+            icon: 'success',
+            duration: 2000
+          })
+          // console.log(this.data.array[e.currentTarget.dataset.id]._id)
+          const db = wx.cloud.database({});
+          const plan = db.collection('plan');
+          plan.doc(this.data.array[e.currentTarget.dataset.id]._id).update({
+            data: {
+              plan_tag: true
+            }
+          })
+          plan.where({
+            _openid: oppid,
+            plan_tag: false
+          }).get({
+            success: (res) => {
+              // console.log(res.data)
+              this.ls = res.data
+              this.setData({
+                ['array']: this.ls
+              })
+              console.log(this.data.array)
+            }
+          });
+          plan.where({
+            _openid: oppid,
+            plan_tag: true
+          }).get({
+            success: (res) => {
+              // console.log(res.data)
+              this.ls2 = res.data
+              this.setData({
+                ['array2']: this.ls2
+              })
+              console.log(this.data.array2)
+            }
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
+  change2: function (e) {
+    wx.showModal({
+      title: '提示',
+      content: '是否未完成',
+      success: (res) => {
+        if (res.confirm) {
+          wx.showToast({
+            title: '该任务未完成',
+            icon: 'success',
+            duration: 2000
+          })
+          // console.log(this.data.array[e.currentTarget.dataset.id]._id)
+          const db = wx.cloud.database({});
+          const plan = db.collection('plan');
+          plan.doc(this.data.array2[e.currentTarget.dataset.id]._id).update({
+            data: {
+              plan_tag: false
+            }
+          })
+          plan.where({
+            _openid: oppid,
+            plan_tag: false
+          }).get({
+            success: (res) => {
+              // console.log(res.data)
+              this.ls = res.data
+              this.setData({
+                ['array']: this.ls
+              })
+              console.log(this.data.array)
+            }
+          });
+          plan.where({
+            _openid: oppid,
+            plan_tag: true
+          }).get({
+            success: (res) => {
+              // console.log(res.data)
+              this.ls2 = res.data
+              this.setData({
+                ['array2']: this.ls2
+              })
+              console.log(this.data.array2)
+            }
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
       }
     })
   }
