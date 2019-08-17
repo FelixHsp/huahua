@@ -68,7 +68,7 @@ Page({
         keepScreenOn: true
       });
       wx.setScreenBrightness({
-        value: 0.01
+        value: 0.2
       });
     }
     wx.setNavigationBarColor({

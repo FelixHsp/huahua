@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/study-hall/study-hall",
     "pages/flower/flower",
+    "pages/study-hall/study-hall",
     "pages/mine/goods/goods",
     "pages/gouwu/gouwu",
     "pages/tips/one/one",
@@ -28,16 +28,16 @@
     "borderStyle": "white",
     "list": [
       {
-        "pagePath": "pages/study-hall/study-hall",
-        "text": "mine自习室",
-        "iconPath": "images/icon_zixishi0.png",
-        "selectedIconPath": "images/icon_zixishi.png"
-      },
-      {
         "pagePath": "pages/flower/flower",
         "text": "专注学习",
         "iconPath": "images/hua0.png",
         "selectedIconPath": "images/hua.png"
+      },
+      {
+        "pagePath": "pages/study-hall/study-hall",
+        "text": "mine自习室",
+        "iconPath": "images/icon_zixishi0.png",
+        "selectedIconPath": "images/icon_zixishi.png"
       },
       {
         "pagePath": "pages/mine/mine",
